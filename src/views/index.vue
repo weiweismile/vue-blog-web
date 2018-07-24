@@ -68,7 +68,7 @@
         <p class="sub-title">不知道说点什么</p>
         <div class="under-line"></div>
         <div class="link-box">
-          <div class="link-item" v-for="(list, index) in lists" :key="index">{{list.name}}</div>
+          <div class="link-item" v-for="(list, index) in lists" :key="index" @click="goto(list.path)">{{list.name}}</div>
         </div>
         <div class="iconfont-box"><i v-for="info in contactInfo" :key="info.name" class="iconfont" :class="[info.icon]"></i></div>
       </div>
@@ -81,15 +81,15 @@ export default {
     return {
       lists: [
         {
-          link: '#',
+          path: '/blog',
           name: '博客'
         },
         {
-          link: '#',
+          path: '/',
           name: '关于'
         },
         {
-          link: '#',
+          path: '/',
           name: '订阅'
         }
       ],
@@ -115,6 +115,11 @@ export default {
           name: 'twitter'
         }
       ]
+    }
+  },
+  methods: {
+    goto (path) {
+      this.$router.push(path)
     }
   }
 }

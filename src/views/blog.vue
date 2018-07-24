@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <div>
+    i am blog
+  </div>
 </template>
 <script>
 export default {
@@ -24,6 +26,9 @@ export default {
         }
       ]
     }
+  },
+  created () {
+
   }
 }
 </script>
