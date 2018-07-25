@@ -1,4 +1,5 @@
 <style lang="scss" scoped>
+@import '~@/assets/css/theme.scss';
 .home-page {
   position: relative;
   height: 100%;
@@ -35,7 +36,7 @@
       }
       .link-item{
         display: inline-block;
-        color: #3a539b;
+        color: $primary-font-color;
         margin: 0 20px;
         font-size: 18px;
         cursor: pointer;
@@ -82,45 +83,45 @@ export default {
       lists: [
         {
           path: '/blog',
-          name: '博客'
+          name: '博客',
         },
         {
           path: '/',
-          name: '关于'
+          name: '关于',
         },
         {
           path: '/',
-          name: '订阅'
-        }
+          name: '订阅',
+        },
       ],
       contactInfo: [
         {
           link: '#',
           icon: 'icon-GitHub',
-          name: 'gitHub'
+          name: 'gitHub',
         },
         {
           link: '#',
           icon: 'icon-youxiang',
-          name: 'email'
+          name: 'email',
         },
         {
           link: '#',
           icon: 'icon-weibo',
-          name: 'weibo'
+          name: 'weibo',
         },
         {
           link: '#',
           icon: 'icon-twitter',
-          name: 'twitter'
-        }
-      ]
-    }
+          name: 'twitter',
+        },
+      ],
+    };
   },
   methods: {
     goto (path) {
       this.$router.push(path)
-    }
-  }
+    },
+  },
 }
 </script>
