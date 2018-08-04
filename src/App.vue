@@ -6,6 +6,7 @@ body,
   background: url(~@/assets/image/6.jpg) no-repeat;
   background-position: center;
   background-size: 100% 100%;
+  min-width: 1000px;
 }
 </style>
 

@@ -10,7 +10,7 @@
     margin-left: -35%;
     margin-top: -150px;
     width: 70%;
-    min-width: 800px;
+    // min-width: 800px;
     height: 300px;
     text-align: center;
     background-color: #ecf0f1;
