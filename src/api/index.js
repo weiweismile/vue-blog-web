@@ -6,6 +6,6 @@ export function getBlog() {
 }
 
 export function login(params) {
-  const data = http.post('/login', { params });
-  return data.data;
+  const data = http.post('/login', params);
+  return data;
 }

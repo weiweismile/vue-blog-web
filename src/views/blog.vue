@@ -55,7 +55,7 @@
     <el-dialog title="登录" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="用户名">
-          <el-input v-model="form.name" auto-complete="off" :label-width="formLabelWidth"></el-input>
+          <el-input v-model="form.username" auto-complete="off" :label-width="formLabelWidth"></el-input>
         </el-form-item>
         <el-form-item label="密码">
           <el-input v-model="form.password"  type="password" auto-complete="off" :label-width="formLabelWidth"></el-input>
@@ -69,9 +69,9 @@
   </div>
 </template>
 <script>
-import { getBlog } from '@/api/index';
+import { getBlog, login } from '@/api/index';
 import mixins from './mixins';
-import mask from '@/utils/mask';
+// import mask from '@/utils/mask';
 
 export default {
   mixins: [mixins],
@@ -80,7 +80,7 @@ export default {
       dialogFormVisible: false,
       formLabelWidth: '120px',
       form: {
-        name: '',
+        username: '',
         password: '',
       },
       nav: [
@@ -112,17 +112,22 @@ export default {
     console.log(data, 88888);
   },
   methods: {
-    handleClick(value) {
-      switch(value){
-        case 'login':
-          this.dialogFormVisible = true;
-          break;
-        default:
-          return;
+    async handleClick(value) {
+      if (value === 'login') {
+        this.dialogFormVisible = true;
       }
     },
-    login() {
+    async login() {
       this.dialogFormVisible = false;
+      const data = await login(this.form)
+      if (data.data.code === 500) {
+        this.$message.error('用户密码不对！');
+        this.form = {
+          username: '',
+          password: '',
+        };
+      }
+      console.log(data.data, 88)
     },
   },
 }
