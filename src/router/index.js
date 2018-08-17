@@ -13,7 +13,13 @@ export default new Router({
     {
       path: '/blog',
       name: 'blog',
-      component: () => import('@/views/blog')
+      component: () => import('@/views/blog'),
+      children: [
+        {
+          path: 'register',
+          component: () => import('@/views/register')
+        }
+      ]
     }
   ]
 })

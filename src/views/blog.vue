@@ -35,6 +35,12 @@
       }
     }
   }
+  .register{
+    text-align: end;
+    color: $primary-font-color;
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }
 </style>
 
@@ -49,7 +55,9 @@
         <div class="nav-list-item" v-for="(item, index) in nav" :key="index" @click.stop="handleClick(item.value)">{{item.name}}</div>
       </div>
     </div>
-    <div class="blog-page-content"></div>
+    <div class="blog-page-content">
+      <router-view></router-view>
+    </div>
 
     <!-- 弹出框 -->
     <el-dialog title="登录" :visible.sync="dialogFormVisible">
@@ -61,6 +69,7 @@
           <el-input v-model="form.password"  type="password" auto-complete="off" :label-width="formLabelWidth"></el-input>
         </el-form-item>
       </el-form>
+      <p class="register" @click="goto('/blog/register');dialogFormVisible=false"><span>去注册</span></p>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
         <el-button type="primary" @click="login">确 定</el-button>
