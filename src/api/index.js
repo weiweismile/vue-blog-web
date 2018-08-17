@@ -9,3 +9,8 @@ export function login(params) {
   const data = http.post('/login', params);
   return data;
 }
+
+export function register(params) {
+  const data = http.post('/register', params);
+  return data;
+}

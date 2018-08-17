@@ -1,7 +1,12 @@
 <style lang="scss">
+@import '~@/assets/css/theme.scss';
 .register-box{
   width: 400px;
-  margin: 50px 30px;
+  margin: 50px auto;
+  padding: 20px;
+  padding-left: 0px;
+  border: 1px solid $primary-border-color;
+  box-shadow: 0 0 2.5em $primary-border-color;
   .avatar-uploader .el-upload {
     border: 1px dashed #d9d9d9;
     border-radius: 6px;
@@ -49,12 +54,18 @@
               <i v-else class="el-icon-plus avatar-uploader-icon"></i>
             </el-upload>
         </el-form-item>
+        <el-form-item>
+          <el-button @click="resetForm">取消</el-button>
+          <el-button type="primary" @click="submitForm">确定</el-button>
+        </el-form-item>
       </el-form>
     </div>
  </div>
 </template>
 
 <script>
+import { register } from '@/api/index';
+
 export default {
   data() {
     return {
@@ -81,6 +92,19 @@ export default {
         this.$message.error('上传头像图片大小不能超过 2MB!');
       }
       return isJPG && isLt2M;
+    },
+    resetForm() {
+      this.form = {
+        username: '',
+        password: '',
+        avatar: ''
+      };
+    },
+    async submitForm() {
+      const rsp = await register(this.form);
+      if (rsp.data.code === 200) {
+        this.$router.push('/blog');
+      }
     }
   }
 }

@@ -118,7 +118,6 @@ export default {
   },
   created () {
     const data = getBlog();
-    console.log(data, 88888);
   },
   methods: {
     async handleClick(value) {
@@ -136,7 +135,6 @@ export default {
           password: '',
         };
       }
-      console.log(data.data, 88)
     },
   },
 }
