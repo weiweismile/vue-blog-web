@@ -1,5 +1,4 @@
 <style lang="scss" scoped>
-@import '~@/assets/css/theme.scss';
 .blog-page{
   width: 60%;
   height: 100%;
