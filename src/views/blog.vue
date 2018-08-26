@@ -117,6 +117,7 @@ export default {
   },
   created () {
     const data = getBlog();
+    console.log(data);
   },
   methods: {
     async handleClick(value) {
