@@ -1,40 +1,40 @@
 <style lang="scss" scoped>
-.blog-page{
+.blog-page {
   width: 60%;
   height: 100%;
   margin: auto;
   box-shadow: 0 0 2.5em #5d656c;
   background-color: #ffffff;
-  .blog-page-header{
+  .blog-page-header {
     display: flex;
     justify-content: space-between;
-    align-items:center;
+    align-items: center;
     padding: 0 10px;
     height: 50px;
     border-bottom: 1px solid #dddddd;
-    background-color: #F7F5F5;
-    .brand-image{
+    background-color: #f7f5f5;
+    .brand-image {
       width: 40px;
       height: 40px;
       border-radius: 50%;
       vertical-align: middle;
       cursor: pointer;
     }
-    .brand-title{
+    .brand-title {
       font-size: 18px;
       cursor: pointer;
     }
-    .nav-list-item{
+    .nav-list-item {
       display: inline-block;
       padding: 0 10px;
       cursor: pointer;
       color: $primary-font-color;
-      &:last-child{
+      &:last-child {
         padding-right: 0;
       }
     }
   }
-  .register{
+  .register {
     text-align: end;
     color: $primary-font-color;
     cursor: pointer;
@@ -46,12 +46,17 @@
 <template>
   <div class="blog-page">
     <div class="blog-page-header">
-      <div class="brand-logo" @click="goto('/')">
-        <img class="brand-image" src="~@/assets/image/user.jpg"/>
+      <div class="brand-logo"
+           @click="goto('/')">
+        <img class="brand-image"
+             src="~@/assets/image/user.jpg" />
         <span class="brand-title">FAN WEIWEI</span>
       </div>
       <div class="nav-list">
-        <div class="nav-list-item" v-for="(item, index) in nav" :key="index" @click.stop="handleClick(item.value)">{{item.name}}</div>
+        <div class="nav-list-item"
+             v-for="(item, index) in nav"
+             :key="index"
+             @click.stop="handleClick(item.value)">{{item.name}}</div>
       </div>
     </div>
     <div class="blog-page-content">
@@ -59,19 +64,30 @@
     </div>
 
     <!-- 弹出框 -->
-    <el-dialog title="登录" :visible.sync="dialogFormVisible">
+    <el-dialog title="登录"
+               :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="用户名">
-          <el-input v-model="form.username" auto-complete="off" :label-width="formLabelWidth"></el-input>
+          <el-input v-model="form.username"
+                    auto-complete="off"
+                    :label-width="formLabelWidth"></el-input>
         </el-form-item>
         <el-form-item label="密码">
-          <el-input v-model="form.password"  type="password" auto-complete="off" :label-width="formLabelWidth"></el-input>
+          <el-input v-model="form.password"
+                    type="password"
+                    auto-complete="off"
+                    :label-width="formLabelWidth"></el-input>
         </el-form-item>
       </el-form>
-      <p class="register" @click="goto('/blog/register');dialogFormVisible=false"><span>去注册</span></p>
-      <div slot="footer" class="dialog-footer">
+      <p class="register"
+         @click="goto('/blog/register');dialogFormVisible=false">
+        <span>去注册</span>
+      </p>
+      <div slot="footer"
+           class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="login">确 定</el-button>
+        <el-button type="primary"
+                   @click="login">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -83,7 +99,7 @@ import mixins from './mixins';
 
 export default {
   mixins: [mixins],
-  data () {
+  data() {
     return {
       dialogFormVisible: false,
       formLabelWidth: '120px',
@@ -113,9 +129,9 @@ export default {
           value: 'login',
         },
       ],
-    }
+    };
   },
-  created () {
+  created() {
     const data = getBlog();
     console.log(data);
   },
@@ -126,16 +142,18 @@ export default {
       }
     },
     async login() {
-      this.dialogFormVisible = false;
-      const data = await login(this.form)
+      const data = await login(this.form);
       if (data.data.code === 500) {
         this.$message.error('用户密码不对！');
+      } else if (data.data.code === 200) {
+        this.$router.push('/blog');
         this.form = {
           username: '',
           password: '',
         };
+        this.dialogFormVisible = false;
       }
     },
   },
-}
+};
 </script>
