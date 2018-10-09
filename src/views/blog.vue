@@ -95,6 +95,7 @@
 <script>
 import { getBlog, login } from '@/api/index';
 import mixins from './mixins';
+import { SET_INFO } from 'types';
 // import mask from '@/utils/mask';
 
 export default {
@@ -139,6 +140,7 @@ export default {
     async handleClick(value) {
       if (value === 'login') {
         this.dialogFormVisible = true;
+      } else if (value === 'logout') {
       }
     },
     async login() {
@@ -146,6 +148,12 @@ export default {
       if (data.data.code === 500) {
         this.$message.error('用户密码不对！');
       } else if (data.data.code === 200) {
+        this.$store.commit(SET_INFO, data.data.data);
+        this.nav.splice(3, 1, {
+          path: '',
+          name: '退出',
+          value: 'logout',
+        });
         this.$router.push('/blog');
         this.form = {
           username: '',
