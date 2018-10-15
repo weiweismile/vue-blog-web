@@ -1,16 +1,21 @@
 import http from './axios';
 
-export function getBlog() {
-  const data = http.get('/blog');
+export async function getBlog() {
+  const data = await http.get('/blog');
   return data.data;
 }
 
-export function login(params) {
-  const data = http.post('/login', params);
+export async function login(params) {
+  const data = await http.post('/login', params);
   return data;
 }
 
-export function register(params) {
-  const data = http.post('/register', params);
+export async function register(params) {
+  const data = await http.post('/register', params);
+  return data;
+}
+
+export async function getInfo() {
+  const data = await http.get('/getInfo');
   return data;
 }

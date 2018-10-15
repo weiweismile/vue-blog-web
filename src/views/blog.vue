@@ -108,7 +108,7 @@ export default {
         username: '',
         password: '',
       },
-      nav: [
+      navData: [
         {
           path: '',
           name: '全部文章',
@@ -124,17 +124,38 @@ export default {
           name: '关于',
           value: 'about',
         },
-        {
-          path: '',
-          name: '登录',
-          value: 'login',
-        },
       ],
     };
   },
   created() {
     const data = getBlog();
     console.log(data);
+  },
+  computed: {
+    isLogin() {
+      return this.$store.state.info.username;
+    },
+    nav() {
+      let lastNav;
+      console.log(this.isLogin, 88888);
+      if (this.isLogin) {
+        // 已经登录
+        lastNav = {
+          path: '',
+          name: '退出',
+          value: 'logout',
+        };
+      } else {
+        lastNav = {
+          path: '',
+          name: '登录',
+          value: 'login',
+        };
+      }
+      const latestNav = this.navData.map(e => e);
+      latestNav.push(lastNav);
+      return latestNav;
+    },
   },
   methods: {
     async handleClick(value) {
@@ -149,11 +170,6 @@ export default {
         this.$message.error('用户密码不对！');
       } else if (data.data.code === 200) {
         this.$store.commit(SET_INFO, data.data.data);
-        this.nav.splice(3, 1, {
-          path: '',
-          name: '退出',
-          value: 'logout',
-        });
         this.$router.push('/blog');
         this.form = {
           username: '',

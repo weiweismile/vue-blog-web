@@ -1,6 +1,10 @@
-import Vuex, { Store } from 'vuex';
+import Vue from 'vue';
+import Vuex from 'vuex';
+import mutations from './mutations';
 
-const state={
+Vue.use(Vuex);
+
+const state = {
   info: {},
 };
 
@@ -8,6 +12,8 @@ const state={
 
 
 
-const store = new Store({
-  state
+const store = new Vuex.Store({
+  state,
+  mutations
 });
+export default store;
