@@ -10,6 +10,11 @@ export async function login(params) {
   return data;
 }
 
+export async function logout() {
+  const data = await http.post('/logout');
+  return data;
+}
+
 export async function register(params) {
   const data = await http.post('/register', params);
   return data;

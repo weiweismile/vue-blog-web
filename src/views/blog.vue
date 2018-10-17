@@ -93,7 +93,7 @@
   </div>
 </template>
 <script>
-import { getBlog, login } from '@/api/index';
+import { getBlog, login, logout } from '@/api/index';
 import mixins from './mixins';
 import { SET_INFO } from 'types';
 // import mask from '@/utils/mask';
@@ -133,7 +133,7 @@ export default {
   },
   computed: {
     isLogin() {
-      return this.$store.state.info.username;
+      return this.$store.state.info.username || null;
     },
     nav() {
       let lastNav;
@@ -162,6 +162,7 @@ export default {
       if (value === 'login') {
         this.dialogFormVisible = true;
       } else if (value === 'logout') {
+        this.logout();
       }
     },
     async login() {
@@ -177,6 +178,21 @@ export default {
         };
         this.dialogFormVisible = false;
       }
+    },
+    logout() {
+      this.$confirm('你将退出登录是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(async() => {
+        const data = await logout();
+        this.$store.commit(SET_INFO, data.data.data);
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '退出失败'
+        });
+      });
     },
   },
 };
