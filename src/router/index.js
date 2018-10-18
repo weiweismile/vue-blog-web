@@ -20,6 +20,11 @@ export default new Router({
           component: () => import('@/views/register')
         }
       ]
-    }
+    },
+    {
+      path: '/editBlog',
+      name: 'editBlog',
+      component: () => import('@/views/edit-blog')
+    },
   ]
 })

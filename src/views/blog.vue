@@ -56,7 +56,7 @@
         <div class="nav-list-item"
              v-for="(item, index) in nav"
              :key="index"
-             @click.stop="handleClick(item.value)">{{item.name}}</div>
+             @click.stop="handleClick(item)">{{item.name}}</div>
       </div>
     </div>
     <div class="blog-page-content">
@@ -110,17 +110,12 @@ export default {
       },
       navData: [
         {
-          path: '',
+          path: '/blog',
           name: '全部文章',
           value: 'allBlog',
         },
         {
-          path: '',
-          name: '我的文章',
-          value: 'myBlog',
-        },
-        {
-          path: '',
+          path: '/about',
           name: '关于',
           value: 'about',
         },
@@ -137,32 +132,37 @@ export default {
     },
     nav() {
       let lastNav;
-      console.log(this.isLogin, 88888);
       if (this.isLogin) {
         // 已经登录
-        lastNav = {
+        lastNav = [{
+          path: '/editBlog',
+          name: '写文章',
+          value: 'editBlog',
+        },{
           path: '',
           name: '退出',
           value: 'logout',
-        };
+        }];
       } else {
-        lastNav = {
+        lastNav = [{
           path: '',
           name: '登录',
           value: 'login',
-        };
+        }];
       }
-      const latestNav = this.navData.map(e => e);
-      latestNav.push(lastNav);
+      let latestNav = this.navData.map(e => e);
+      latestNav = [...latestNav, ...lastNav];
       return latestNav;
     },
   },
   methods: {
-    async handleClick(value) {
-      if (value === 'login') {
+    async handleClick(item) {
+      if (item.value === 'login') {
         this.dialogFormVisible = true;
-      } else if (value === 'logout') {
+      } else if (item.value === 'logout') {
         this.logout();
+      } else {
+        this.$router.push(item.path);
       }
     },
     async login() {
