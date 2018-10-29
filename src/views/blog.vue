@@ -138,7 +138,8 @@ export default {
           path: '/editBlog',
           name: '写文章',
           value: 'editBlog',
-        },{
+        },
+        {
           path: '',
           name: '退出',
           value: 'logout',

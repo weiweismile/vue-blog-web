@@ -24,3 +24,8 @@ export async function getInfo() {
   const data = await http.get('/getInfo');
   return data;
 }
+
+export async function publishText(params) {
+  const data = await http.post('/publishText', params);
+  return data;
+}
