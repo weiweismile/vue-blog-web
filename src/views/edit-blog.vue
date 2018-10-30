@@ -108,7 +108,7 @@ export default {
     async publishText() {
       const params = {
         title: this.inputTitle,
-        content: this.inputText,
+        content: this.renderText,
         publishDate: `${new Date().valueOf()}`,
       };
       try {

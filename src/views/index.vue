@@ -81,7 +81,7 @@ export default {
     return {
       lists: [
         {
-          path: '/blog',
+          path: '/blog/articleList',
           name: '博客',
         },
         {

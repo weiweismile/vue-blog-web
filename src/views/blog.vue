@@ -40,6 +40,9 @@
     cursor: pointer;
     text-decoration: underline;
   }
+  .blog-page-content{
+    padding: 10px;
+  }
 }
 </style>
 
@@ -93,7 +96,7 @@
   </div>
 </template>
 <script>
-import { getBlog, login, logout } from '@/api/index';
+import { login, logout } from '@/api/index';
 import mixins from './mixins';
 import { SET_INFO } from 'types';
 // import mask from '@/utils/mask';
@@ -110,21 +113,17 @@ export default {
       },
       navData: [
         {
-          path: '/blog',
+          path: '/blog/articleList',
           name: '全部文章',
           value: 'allBlog',
         },
         {
-          path: '/about',
+          path: '/blog/about',
           name: '关于',
           value: 'about',
         },
       ],
     };
-  },
-  created() {
-    const data = getBlog();
-    console.log(data);
   },
   computed: {
     isLogin() {

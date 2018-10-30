@@ -16,6 +16,14 @@ export default new Router({
       component: () => import('@/views/blog'),
       children: [
         {
+          path: 'articleList',
+          component: () => import('@/views/article-list')
+        },
+        {
+          path: 'article',
+          component: () => import('@/views/article')
+        },
+        {
           path: 'register',
           component: () => import('@/views/register')
         }
