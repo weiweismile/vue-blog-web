@@ -41,6 +41,12 @@
         .btn-tool{
           padding: 0 10px;
           cursor: pointer;
+          color: $primary-font-color1;
+          .iconfont{
+            display: inline-block;
+            font-size: 20px;
+            vertical-align: middle;
+          }
         }
       }
     .edit-area{
@@ -73,8 +79,12 @@
       <div class="blog-edit-area">
         <div class="blog-edit-area-inner">
            <div class="blog-tools">
-             <div class="btn-tool">图片</div>
-             <div class="btn-tool" @click="publishText">发布</div>
+             <el-tooltip class="item" effect="dark" content="添加图片" placement="top">
+                <div class="btn-tool"><i class="iconfont icon-picture"></i></div>
+             </el-tooltip>
+             <el-tooltip class="item" effect="dark" content="发布" placement="top">
+                <div class="btn-tool" @click="publishText"><i class="iconfont icon-release-1-copy"></i></div>
+             </el-tooltip>
            </div>
             <div class="edit-area">
               <textarea class="markdown-area" v-model="inputText"></textarea>

@@ -6,7 +6,7 @@ Vue.use(Vuex);
 
 const state = {
   info: {},
-  article: {}, //当前文章内容
+  article: {}, // 当前文章内容
 };
 
 
